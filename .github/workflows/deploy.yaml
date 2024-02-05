@@ -24,7 +24,7 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build -f Dockerfile.dev . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/react-test:${{ github.sha }}
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/react-test:${{ github.sha }}
             docker run -e CI=true ${{ secrets.REGISTRY_LOGIN_SERVER }}/react-test:${{ github.sha }} npm test
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/react-test:${{ github.sha }}
 
